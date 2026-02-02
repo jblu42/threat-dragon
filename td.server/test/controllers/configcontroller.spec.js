@@ -40,13 +40,14 @@ describe('controllers/configcontroller.js', () => {
     describe("getConfig", () => {
 
         it("all true", () => {
-            sinon.stub(env, 'get').returns({config: {BITBUCKET_CLIENT_ID: '123', GITHUB_CLIENT_ID: '456',GITLAB_CLIENT_ID: '456', GOOGLE_CLIENT_ID: '123'}});
+            sinon.stub(env, 'get').returns({config: {BITBUCKET_CLIENT_ID: '123', GITHUB_CLIENT_ID: '456',GITLAB_CLIENT_ID: '456', GOOGLE_CLIENT_ID: '123', LOCAL_STORAGE_ENABLED: 'true'}});
             expect(getConfig()).to.deep.equal({
                 "bitbucketEnabled": true,
                 "githubEnabled": true,
                 "gitlabEnabled": true,
                 "googleEnabled": true,
                 "localEnabled": true,
+                "localStorageEnabled": true,
             })
         })
         it("bitbucket and local", () => {
@@ -57,6 +58,7 @@ describe('controllers/configcontroller.js', () => {
                 "gitlabEnabled": false,
                 "googleEnabled": false,
                 "localEnabled": true,
+                "localStorageEnabled": false,
             })
         })
         it("github and local", () => {
@@ -67,6 +69,7 @@ describe('controllers/configcontroller.js', () => {
                 "gitlabEnabled": false,
                 "googleEnabled": false,
                 "localEnabled": true,
+                "localStorageEnabled": false,
             })
         })
         it("gitlab and local", () => {
@@ -77,6 +80,7 @@ describe('controllers/configcontroller.js', () => {
                 "gitlabEnabled": true,
                 "googleEnabled": false,
                 "localEnabled": true,
+                "localStorageEnabled": false,
             })
         })
         it("google and local", () => {
@@ -87,6 +91,7 @@ describe('controllers/configcontroller.js', () => {
                 "gitlabEnabled": false,
                 "googleEnabled": true,
                 "localEnabled": true,
+                "localStorageEnabled": false,
             })
         })
         it("github and bitbucket null and local", () => {
@@ -97,6 +102,7 @@ describe('controllers/configcontroller.js', () => {
                 "gitlabEnabled": false,
                 "googleEnabled": false,
                 "localEnabled": true,
+                "localStorageEnabled": false,
             })
         })
         it("local only", () => {
@@ -107,6 +113,18 @@ describe('controllers/configcontroller.js', () => {
                 "gitlabEnabled": false,
                 "googleEnabled": false,
                 "localEnabled": true,
+                "localStorageEnabled": false,
+            })
+        })
+        it("local storage enabled", () => {
+            sinon.stub(env, 'get').returns({config: { LOCAL_STORAGE_ENABLED: 'true' }});
+            expect(getConfig()).to.deep.equal({
+                "bitbucketEnabled": false,
+                "githubEnabled": false,
+                "gitlabEnabled": false,
+                "googleEnabled": false,
+                "localEnabled": true,
+                "localStorageEnabled": true,
             })
         })
     });
