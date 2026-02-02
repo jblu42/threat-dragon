@@ -200,6 +200,10 @@
 !td.vue/src/views/demo/*.vue
 !td.vue/src/views/git/
 !td.vue/src/views/git/*.vue
+!td.vue/src/views/google/
+!td.vue/src/views/google/*.vue
+!td.vue/src/views/localServer/
+!td.vue/src/views/localServer/*.vue
 !td.vue/tests/
 !td.vue/tests/e2e/
 !td.vue/tests/e2e/*.js

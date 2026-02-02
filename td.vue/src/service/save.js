@@ -2,6 +2,7 @@ import Vue from 'vue';
 
 import googleDriveApi from '@/service/api/googleDriveApi';
 import i18n from '@/i18n/index.js';
+import localApi from '@/service/api/localApi';
 import threatmodelApi from '@/service/api/threatmodelApi';
 
 const google = async (rootState, state) => {
@@ -76,6 +77,38 @@ const repoCreate = async (rootState, state) => {
         Vue.$toast.success(i18n.get().t('threatmodel.prompts.created'));
     } catch (ex) {
         console.error('Failed to create threat model!');
+        console.error(ex);
+        Vue.$toast.error(i18n.get().t('threatmodel.errors.create'));
+        return false;
+    }
+    return true;
+};
+
+const localServer = async (state) => {
+    try {
+        await localApi.updateAsync(
+            state.data.summary.title,
+            state.data
+        );
+        Vue.$toast.success(i18n.get().t('threatmodel.prompts.saved'));
+    } catch (ex) {
+        console.error('Failed to save threat model to local storage!');
+        console.error(ex);
+        Vue.$toast.error(i18n.get().t('threatmodel.warnings.save'));
+        return false;
+    }
+    return true;
+};
+
+const localServerCreate = async (state) => {
+    try {
+        await localApi.createAsync(
+            state.data.summary.title,
+            state.data
+        );
+        Vue.$toast.success(i18n.get().t('threatmodel.prompts.created'));
+    } catch (ex) {
+        console.error('Failed to create threat model in local storage!');
         console.error(ex);
         Vue.$toast.error(i18n.get().t('threatmodel.errors.create'));
         return false;
@@ -158,6 +191,8 @@ export default {
     google,
     googleCreate,
     local,
+    localServer,
+    localServerCreate,
     repo,
     repoCreate
 };

@@ -50,6 +50,7 @@
     "jsonwebtoken": "^9.0.3",
     "octonode": "^0.10.2",
     "serve-favicon": "^2.5.0",
+    "simple-git": "^3.22.0",
     "winston": "^3.8.2"
   },
   "devDependencies": {

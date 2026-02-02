@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import { gitRoutes } from './git.js';
 import HomePage from '../views/HomePage.vue';
 import { localRoutes } from './local.js';
+import { localServerRoutes } from './localServer.js';
 import { desktopRoutes } from './desktop.js';
 import { googleRoutes } from './google.js';
 
@@ -31,6 +32,7 @@ const routes = [
     ...desktopRoutes,
     ...gitRoutes,
     ...localRoutes,
+    ...localServerRoutes,
     ...googleRoutes
 ];
 

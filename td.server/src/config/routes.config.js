@@ -6,6 +6,7 @@ import configController from "../controllers/configcontroller";
 import googleProviderThreatmodelController from '../controllers/googleProviderThreatmodelController.js';
 import healthcheck from '../controllers/healthz.js';
 import homeController from '../controllers/homecontroller.js';
+import localController from '../controllers/localController.js';
 import threatmodelController from '../controllers/threatmodelcontroller.js';
 
 /**
@@ -25,6 +26,14 @@ const unauthRoutes = (router) => {
     router.get('/api/logout', auth.logout);
     router.get('/api/oauth/return', auth.oauthReturn);
     router.get('/api/oauth/:provider', auth.completeLogin);
+
+    // Local git storage routes (no auth required for self-hosted scenarios)
+    router.get('/api/local/models', localController.models);
+    router.get('/api/local/:model/data', localController.model);
+    router.post('/api/local/:model/create', localController.create);
+    router.put('/api/local/:model/update', localController.update);
+    router.get('/api/local/:model/history', localController.history);
+    router.get('/api/local/:model/version/:version', localController.version);
 };
 
 /**

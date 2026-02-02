@@ -35,6 +35,10 @@ const eng = {
         local: {
             displayName: 'Local Session',
             loginWith: 'Login to'
+        },
+        localServer: {
+            displayName: 'Local Storage',
+            loginWith: 'Use'
         }
     },
     dashboard: {

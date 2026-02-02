@@ -1,5 +1,6 @@
 import githubProvider from './github.provider.js';
 import localProvider from './local.provider.js';
+import localServerProvider from './localServer.provider.js';
 import desktopProvider from './desktop.provider.js';
 import { providerTypes } from './providerTypes.js';
 import bitbucketProvider from '@/service/provider/bitbucket.provider';
@@ -48,6 +49,13 @@ const providers = {
         provider: localProvider,
         type: providerTypes.local,
         icon: ['fab', 'vuejs']
+    },
+    localServer: {
+        key: 'localServer',
+        displayName: 'Local Storage',
+        provider: localServerProvider,
+        type: providerTypes.localServer,
+        icon: 'server'
     }
 };
 

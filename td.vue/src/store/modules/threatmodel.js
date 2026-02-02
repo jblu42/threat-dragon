@@ -63,6 +63,8 @@ const actions = {
                     dispatch(FOLDER_SELECTED, folder.data);
                     result = true;
                 }
+            } else if (getProviderType(rootState.provider.selected) === providerTypes.localServer) {
+                result = await save.localServerCreate(state);
             } else {
                 result = await save.repoCreate(rootState, state);
             }
@@ -134,6 +136,8 @@ const actions = {
                 result = await save.local(state);
             } else if (getProviderType(rootState.provider.selected) === providerTypes.google) {
                 result = await save.google(rootState, state);
+            } else if (getProviderType(rootState.provider.selected) === providerTypes.localServer) {
+                result = await save.localServer(state);
             } else {
                 result = await save.repo(rootState, state);
             }

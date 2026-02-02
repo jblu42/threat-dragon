@@ -12,6 +12,7 @@ export const getConfig = () => ({
     gitlabEnabled: env.get().config.GITLAB_CLIENT_ID !== undefined && env.get().config.GITLAB_CLIENT_ID !== null,
     googleEnabled: env.get().config.GOOGLE_CLIENT_ID !== undefined && env.get().config.GOOGLE_CLIENT_ID !== null,
     localEnabled: true,
+    localStorageEnabled: env.get().config.LOCAL_STORAGE_ENABLED === 'true',
 });
 
 export default {
